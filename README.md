@@ -1,40 +1,22 @@
-# PokePlague — PokePlay Zombie Apocalypse
+# PokePlague
 
-PokePlague is intended to extend the existing PokePlay Pokémon Telegram game with a zombie-apocalypse survival layer. The preservation rule is strict: existing Pokémon data, catching, moves, evolutions, battles, and player progression should remain unchanged unless a later, tested feature explicitly integrates with them.
+A clean, hand-written Telegram Pokémon survival bot. This branch is a new implementation, not a file-by-file copy of the original PokePlay source.
 
-## Current repository status
+## Features
+- Trainer profiles, starter selection, collection and team.
+- One spawn announcement per chat; 30-second timer; first correct guess wins; the announcement is edited on claim/expiry.
+- Basic wild battles, healing, coins and XP.
+- Zombie infection, scavenging, antidotes, and Pokémon infection/cure mechanics.
+- Atomic JSON saves.
 
-This repository currently contains the initial project setup and isolated zombie feature modules. **The complete PokePlay source tree has not yet been imported into this GitHub repository**, so this repository is not a runnable full bot yet. Do not deploy it as a live Telegram bot until the original source files are added and the complete test/startup checks pass.
+## Run
+1. Install Node.js 20 or newer.
+2. Copy .env.example to .env and set BOT_TOKEN.
+3. Run npm install, npm run check, npm test, and npm start.
 
-## Zombie feature slice
+Data is saved to data/state.json by default. Back it up. This JSON store is for a single bot process; use a database before running multiple instances. Never commit .env or a real token.
 
-The initial isolated mechanics include:
+## Commands
+/start, /help, /profile, /starter NAME, /pokemon, /team, /spawn, /battle, /heal, /infection, /scavenge, /antidote, /curepokemon NAME, /leaderboard.
 
-- `/infection` — display infection, supplies, and antidote usage.
-- `/scavenge` — find 1–4 supplies; an encounter can raise infection. Cooldown: 30 minutes.
-- `/antidote` — spend 3 supplies to reduce infection by 35 points.
-
-The feature stores its own state under `zombieApocalypse` in the existing user record and is designed to be registered by the project's existing command loader.
-
-## Requirements and setup
-
-- Node.js 18+ (Node.js 20 LTS recommended).
-- A Telegram bot token created or rotated through [BotFather](https://t.me/BotFather).
-- Native build prerequisites for the existing `canvas` dependency on your operating system.
-
-Once the complete PokePlay source has been imported:
-
-1. Install dependencies with `npm ci`.
-2. Copy `.env.example` to `.env`.
-3. Set `BOT_TOKEN` to a newly generated token.
-4. Start with `npm start`.
-5. Run `npm test` and the project's syntax checks before deploying.
-
-Never commit `.env`, bot tokens, database credentials, sessions, local player databases, or user backups. If a token was exposed in an earlier ZIP or commit, revoke it and generate a replacement before running the bot.
-
-## Development policy
-
-- Keep existing PokePlay gameplay intact.
-- Add new systems as isolated modules first.
-- Test both new behavior and regression cases before merging.
-- Keep the repository private until the source and secrets have been reviewed.
+Send the spawned Pokémon's name as a normal text message to claim it.
