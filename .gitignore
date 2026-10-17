@@ -1,13 +1,4 @@
-node_modules/
 .env
-.env.*
-!.env.example
-*.log
-.DS_Store
-npm-debug.log*
-data/db/
-data/battle/
-data/*session*.json
-data/transfer_requests.json
-user_data_*.zip
-coverage/
+node_modules/
+data/state.json
+data/state.json.tmp
