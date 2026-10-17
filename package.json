@@ -1,0 +1,32 @@
+{
+  "name": "pokeplague",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PokePlay Pokémon game with an additive zombie-apocalypse expansion",
+  "main": "pokeplay2.js",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "archiver": "^6.0.1",
+    "canvas": "^3.2.1",
+    "csvtojson": "^2.0.10",
+    "fetch": "^1.1.0",
+    "he": "^1.2.0",
+    "jimp": "^0.22.10",
+    "moment": "^2.30.1",
+    "node-cache": "^5.1.2",
+    "node-schedule": "^2.1.1",
+    "sharp": "^0.33.2",
+    "string-similarity": "^4.0.4",
+    "telegraf": "^4.16.3",
+    "telegraf-session-local": "^2.1.1",
+    "websocket": "^1.0.34",
+    "node-fetch": "^2.7.0"
+  },
+  "scripts": {
+    "start": "node pokeplay2.js",
+    "start:backup": "node db.js",
+    "start:transfer": "node transfer_bot.js",
+    "check:zombie": "node --check zombie/engine.js && node --check commands/zombie/apocalypse.js",
+    "test": "node --test test/*.test.js"
+  }
+}
