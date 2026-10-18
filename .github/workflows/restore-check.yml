@@ -1,0 +1,22 @@
+name: Original PokePlay Restore Check
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [restore/original-pokeplay]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      - name: Check JavaScript syntax
+        run: find . -path './node_modules' -prune -o -name '*.js' -type f -print0 | xargs -0 -n1 node --check
+      - name: Restore and validate original moveset data
+        run: node scripts/ensure-data.js
