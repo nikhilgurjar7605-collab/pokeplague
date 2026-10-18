@@ -1,10 +1,11 @@
 require('dotenv').config();
 let msgsent = []
 const appr = [1072659486,6265981509]
-//const botToken = 'process.env.BOT_TOKEN' //main bot
-const botToken = 'process.env.BOT_TOKEN' //backup bot
-//const botToken = 'process.env.BOT_TOKEN' // test bot
+const botToken = process.env.BOT_TOKEN;
+const botToken = '8262478413:AAEikx32qA0Rk0pSwbxyzAGHwNCJofcSMcA' //backup bot
+const botToken = process.env.BOT_TOKEN;
 const { Telegraf } = require('telegraf')
+if (!process.env.BOT_TOKEN) throw new Error('BOT_TOKEN environment variable is required');
 const bot = new Telegraf(botToken)
 const app = [6265981509]
 const LocalSession = require('telegraf-session-local');

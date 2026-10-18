@@ -14,7 +14,8 @@
     "telegraf": "^4.16.3",
     "telegraf-session-local": "^2.1.1",
     "websocket": "^1.0.34",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "node-fetch": "^2.7.0"
   },
   "scripts": {
     "start": "node pokeplay2.js"
