@@ -1,0 +1,1 @@
+One-time restoration marker. The restoration workflow removes this file after validation.
