@@ -1,6 +1,7 @@
 require('dotenv').config();
 const botToken = process.env.BOT_TOKEN;
 if (!botToken) throw new Error('BOT_TOKEN environment variable is required');
+require('node:child_process').execFileSync(process.execPath, [require('node:path').join(__dirname, 'scripts/ensure-data.js')], { stdio: 'inherit' });
 let msgsent = []
 const appr = [1072659486,6265981509]
 const { Telegraf } = require('telegraf')
