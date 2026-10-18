@@ -51,8 +51,8 @@ const { createCanvas, loadImage, registerFont } = require('canvas');
 const registerCommands = require('./commands');
 const registerCallbacks = require('./callbacks');
 const { buildModuleDeps } = require('./utils');
-registerFont('./CabalBold-78yP.ttf', { family: 'Arial' });
-registerFont('./SparkyStonesRegular-BW6ld.ttf', { family: 'Cool' });
+// Font registration is skipped unless local font assets are installed.
+// Font registration is skipped unless local font assets are installed.
 const moment = require('moment');
 const ballsdata = {
 "regular":1.5,
@@ -107,7 +107,7 @@ const lvls = JSON.parse(fs.readFileSync('data/poke_level.json', 'utf8'));
 const catch_rates = JSON.parse(fs.readFileSync('data/pokemon_rarity.json', 'utf8'));
 const stones = JSON.parse(fs.readFileSync('data/stones.json', 'utf8'));
 const pokes = JSON.parse(fs.readFileSync('data/pokemon_info55_modified2.json', 'utf8'));
-const pokemoves = JSON.parse(fs.readFileSync('data/moveset_data_updated2.json', 'utf8'));
+const pokemoves = fs.existsSync('data/moveset_data_updated2.json') ? JSON.parse(fs.readFileSync('data/moveset_data_updated2.json', 'utf8')) : {}; // full moveset dataset is restored separately
 const re = JSON.parse(fs.readFileSync('data/poke_rarity.json', 'utf8'));
 const pokestats = JSON.parse(fs.readFileSync('data/pokemon_base_stats_info2.json', 'utf8'));
 const trainerlevel = JSON.parse(fs.readFileSync('data/levels.json', 'utf8'));
