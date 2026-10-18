@@ -1,22 +1,20 @@
-# PokePlague
+# PokePlague — original PokePlay restoration
 
-A clean, hand-written Telegram Pokémon survival bot. This branch is a new implementation, not a file-by-file copy of the original PokePlay source.
+This branch restores the original PokePlay game structure as the baseline for PokePlague. New zombie-apocalypse mechanics are intentionally deferred until the original game is running.
 
-## Features
-- Trainer profiles, starter selection, collection and team.
-- One spawn announcement per chat; 30-second timer; first correct guess wins; the announcement is edited on claim/expiry.
-- Basic wild battles, healing, coins and XP.
-- Zombie infection, scavenging, antidotes, and Pokémon infection/cure mechanics.
-- Atomic JSON saves.
+## Runtime
 
-## Run
-1. Install Node.js 20 or newer.
-2. Copy .env.example to .env and set BOT_TOKEN.
-3. Run npm install, npm run check, npm test, and npm start.
+- Node.js 20 or newer
+- Install dependencies with `npm install` (or `yarn install`)
+- Set `BOT_TOKEN` in the hosting provider's environment variables. Never commit a real bot token or `.env` file.
+- Start with `npm start` or `node pokeplay2.js`.
 
-Data is saved to data/state.json by default. Back it up. This JSON store is for a single bot process; use a database before running multiple instances. Never commit .env or a real token.
+The original large Pokémon moveset dataset is downloaded from the pinned public source revision at startup if it is missing. The download is JSON-validated before being saved. Keep outbound HTTPS access enabled in the host.
 
-## Commands
-/start, /help, /profile, /starter NAME, /pokemon, /team, /spawn, /battle, /heal, /infection, /scavenge, /antidote, /curepokemon NAME, /leaderboard.
+## Deployment note
 
-Send the spawned Pokémon's name as a normal text message to claim it.
+The source uses local JSON files for game data and user state. User state/session files are runtime data and must not be committed. Use persistent storage or a database before relying on this deployment for long-term player progress.
+
+## Scope
+
+Restore and verify the existing Pokémon game systems first; add PokePlague-specific mechanics only after this baseline is running.
