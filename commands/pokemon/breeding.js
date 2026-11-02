@@ -3,7 +3,7 @@ const INCUBATION_MS = 30 * 60 * 1000;
 const GENDERLESS = new Set([
   "magnemite", "magneton", "voltorb", "electrode", "staryu", "starmie",
   "porygon", "porygon2", "porygon-z", "unown", "baltoy", "claydol",
-  "beldum", "metang", "metagross", "bronzor", "bronzong", " rotom",
+  "beldum", "metang", "metagross", "bronzor", "bronzong", "rotom",
   "golett", "golurk", "honedge", "doublade", "aegislash", "carbink",
   "klefki", "diancie", "cosmog", "cosmoem", "solgaleo", "lunala",
   "necrozma", "magearna", "zeraora", "meltan", "melmetal"
@@ -68,7 +68,7 @@ function registerBreedingCommands(bot, deps) {
           "🥚 *BREEDING NURSERY*\n\nChoose a compatible male and female Pokémon.\n\n" +
           (lines.join("\n") || "No eligible Pokémon found.") +
           "\n\nUse: /breed MALE_ID FEMALE_ID\nExample: /breed 123456 654321\n\n" +
-          "For this first release, parents must be the same species or one parent must be Ditto. Legendary, mythical and genderless Pokémon cannot breed.",
+          "For this first release, parents must be the same species or one parent must be Ditto. Genderless Pokémon cannot breed yet.",
           { parse_mode: "Markdown" }
         );
       }
