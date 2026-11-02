@@ -97,15 +97,14 @@ function registerBreedingCommands(bot, deps) {
       if (data.eggs && data.eggs.some(egg => !egg.hatchedAt)) {
         return ctx.reply("You already have an egg incubating. Use /eggs to check it.");
       }
-      const species = a === "ditto" ? female.name : male.name === "ditto" ? female.name : female.name;
-      const inheritedCount = data.inv && Number(data.inv.destiny_knot) > 0 ? 5 : 3;
+      const species = a === "ditto" ? female.name : b === "ditto" ? male.name : female.name;
+      const hasKnot = data.inv && Number(data.inv.destiny_knot) > 0;
+      const inheritedCount = hasKnot ? 5 : 3;
       const ivs = chooseInheritedIVs(male, female, inheritedCount);
-      let nature = randomNature();
-      if (data.inv && Number(data.inv.everstone) > 0 && Math.random() < 0.5) {
-        nature = Math.random() < 0.5 ? male.nature : female.nature;
-      } else if (Math.random() < 0.5) {
-        nature = Math.random() < 0.5 ? male.nature : female.nature;
-      }
+      const nature = Math.random() < 0.5
+        ? (Math.random() < 0.5 ? male.nature : female.nature)
+        : randomNature();
+      if (hasKnot) data.inv.destiny_knot -= 1;
       data.eggs = Array.isArray(data.eggs) ? data.eggs : [];
       const eggId = randomPass(new Set(data.eggs.map(e => String(e.id))));
       data.eggs.push({
@@ -158,7 +157,7 @@ function registerBreedingCommands(bot, deps) {
         nature: egg.nature,
         ivs: { ...egg.ivs },
         evs: Object.fromEntries(STATS.map(stat => [stat, 0])),
-        symbol: "🥚"
+        symbol: ""
       };
       egg.hatchedAt = Date.now();
       egg.babyPass = baby.pass;
