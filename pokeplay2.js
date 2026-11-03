@@ -1402,23 +1402,4 @@ return null
 }
 }
 // /natures moved to commands/natures.js
-const BOT_OWNER_ID = 1214273889;
-bot.launch()
-  .then(async () => {
-    console.log('[startup] Bot started successfully.');
-    try {
-      await bot.telegram.sendMessage(
-        BOT_OWNER_ID,
-        '✅ <b>Bot Started Successfully</b>\\n\\nYour Pokémon bot is online and ready.',
-        { parse_mode: 'HTML' }
-      );
-      console.log('[startup] Owner notification sent.');
-    } catch (error) {
-      console.error('[startup] Could not notify bot owner:', error.description || error.message || error);
-    }
-  })
-  .catch(error => {
-    console.error('[startup] Bot failed to start:', error);
-    process.exitCode = 1;
-  });
-
+bot.launch();
