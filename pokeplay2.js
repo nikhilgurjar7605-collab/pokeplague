@@ -1402,7 +1402,7 @@ return null
 }
 }
 // /natures moved to commands/natures.js
-const BOT_OWNER_ID = 6265981509;
+const BOT_OWNER_ID = 1214273889;
 bot.launch()
   .then(async () => {
     console.log('[startup] Bot started successfully.');
