@@ -10,7 +10,7 @@ function registerCommands(bot, deps) {
         loadFrom(full);
         continue;
       }
-      if (entry.name.endsWith(".js") && entry.name !== "index.js") {
+      if (entry.name.endsWith(".js") && entry.name !== "index.js" && entry.name !== "breeding.js") {
         const register = require(full);
         if (typeof register === "function") {
           register(bot, deps);
