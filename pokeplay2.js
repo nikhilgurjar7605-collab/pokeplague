@@ -426,6 +426,19 @@ const moduleDeps = buildModuleDeps({
   forwardMessageToAllUsers
 });
 registerCommands(bot, moduleDeps);
+// Register the Nursery commands explicitly from the main entry point.
+// commands/index.js intentionally skips breeding.js to prevent duplicate handlers.
+try {
+  const registerBreedingCommands = require('./commands/pokemon/breeding');
+  if (typeof registerBreedingCommands !== 'function') {
+    throw new TypeError('commands/pokemon/breeding.js must export a registration function');
+  }
+  registerBreedingCommands(bot, moduleDeps);
+  console.log('[commands] Nursery handlers registered: /breed, /eggs, /hatch');
+} catch (error) {
+  console.error('[commands] Failed to register Nursery handlers:', error);
+  throw error;
+}
 registerCallbacks(bot, moduleDeps);
 
 bot.on('callback_query', async (ctx, next) => {
